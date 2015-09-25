@@ -67,11 +67,7 @@ uciData.all <- uciData.all[, featureIdsOnMeanOrStd, with = F]
 # Set descriptive activity names
 uciData.activityNames <- uci.helpers.readAsDataTable(file.path(uci.datasetPath, 'activity_labels.txt'))
 names(uciData.activityNames) <- c("activityId", "activityName")
-uciData.all <- merge(uciData.all, uciData.activityNames, by='activityId')
-uciData.all$activityName <- factor(uciData.all$activityName)
-uciData.all$subject <- factor(uciData.all$subject)
-setkey(uciData.all, subject, activityName, activityId)
-uciData.melted = melt(uciData.all, key(uciData.all), variable.name = 'featureId')
-uciData.features$featureId <- paste('V', uciData.features$featureId, sep='')
-uciData.melted <- merge(uciData.melted, uciData.features, by='featureId', all.x=T)
+setnames(uciData.all, paste0('V',featuresOnMeanOrStd$featureId), as.character(featuresOnMeanOrStd$featureName))
 
+# Write tidy dataset
+write.table(uciData.all, file="result.txt", row.names = F)
