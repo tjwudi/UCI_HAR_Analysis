@@ -1,4 +1,4 @@
-# CodeBook
+# UCI_HAR_Analysis
 
 This document describes steps used by **run_analysis.R** to extract tidy data from [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
 
